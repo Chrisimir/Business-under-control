@@ -17,9 +17,10 @@ namespace Business_under_control
             InitializeComponent();
         }
 
-        // Event dependent functions
+        // Event handlers
+        //      Display alert window - Click wherever in "Alert" zone
         AlertListWindow alertWindow = new AlertListWindow();
-        private void openAlertWindow()
+        private void openAlertWindow(object sender, EventArgs e)
         {
             if (!alertWindow.Visible)
             {
@@ -27,40 +28,40 @@ namespace Business_under_control
                 alertWindow.Show();
             }
         }
-
-        // Event handlers
+        
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void paneAlert_Click(object sender, EventArgs e)
-        {
-            openAlertWindow();
-        }
-
-        private void alertImage_Click(object sender, EventArgs e)
-        {
-            openAlertWindow();
-        }
-
-        private void lblAlert_Click(object sender, EventArgs e)
-        {
-            openAlertWindow();
-        }
-
-        private void lblAlertNum_Click(object sender, EventArgs e)
-        {
-            openAlertWindow();
-        }
-
+        AboutScreen aboutScreen = new AboutScreen();
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            // TODO: Open new screen and close(destroy) this one
-            /*AboutScreen aboutScreen = new AboutScreen();
-            this.Close();
-            aboutScreen.Show();
-            this.Visible = false;*/
+            if (!aboutScreen.Visible)
+            {
+                aboutScreen = new AboutScreen();
+                aboutScreen.Show();
+            }
+        }
+
+        private void lblEditFirm_MouseEnter(object sender, EventArgs e)
+        {
+            lblEditFirm.Font = new Font(lblEditFirm.Font.Name, lblEditFirm.Font.SizeInPoints, FontStyle.Underline);
+        }
+
+        private void lblEditFirm_MouseLeave(object sender, EventArgs e)
+        {
+            lblEditFirm.Font = new Font(lblEditFirm.Font.Name, lblEditFirm.Font.SizeInPoints, FontStyle.Regular);
+        }
+
+        FirmEditScreen firmEditScreen = new FirmEditScreen();
+        private void lblEditFirm_Click(object sender, EventArgs e)
+        {
+            if (!firmEditScreen.Visible)
+            {
+                firmEditScreen = new FirmEditScreen();
+                firmEditScreen.Show();
+            }
         }
     }
 }

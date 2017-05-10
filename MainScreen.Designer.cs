@@ -36,17 +36,18 @@
             this.lblAlert = new System.Windows.Forms.Label();
             this.firmName = new System.Windows.Forms.Label();
             this.flPaneOptions = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAbout = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.lstSearchResults = new System.Windows.Forms.ListBox();
             this.paneAlert = new System.Windows.Forms.Panel();
             this.alertImage = new System.Windows.Forms.PictureBox();
-            this.btnAbout = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
             this.firmLogo = new System.Windows.Forms.PictureBox();
             this.lblMail = new System.Windows.Forms.Label();
             this.lblTelephone = new System.Windows.Forms.Label();
             this.lblWebsite = new System.Windows.Forms.Label();
+            this.lblEditFirm = new System.Windows.Forms.Label();
             this.flPaneOptions.SuspendLayout();
             this.paneAlert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alertImage)).BeginInit();
@@ -93,7 +94,7 @@
             this.lblAlertNum.Size = new System.Drawing.Size(17, 16);
             this.lblAlertNum.TabIndex = 2;
             this.lblAlertNum.Text = "0";
-            this.lblAlertNum.Click += new System.EventHandler(this.lblAlertNum_Click);
+            this.lblAlertNum.Click += new System.EventHandler(this.openAlertWindow);
             // 
             // lblAlert
             // 
@@ -104,7 +105,7 @@
             this.lblAlert.Size = new System.Drawing.Size(84, 18);
             this.lblAlert.TabIndex = 0;
             this.lblAlert.Text = "No alert.";
-            this.lblAlert.Click += new System.EventHandler(this.lblAlert_Click);
+            this.lblAlert.Click += new System.EventHandler(this.openAlertWindow);
             // 
             // firmName
             // 
@@ -126,6 +127,38 @@
             this.flPaneOptions.Name = "flPaneOptions";
             this.flPaneOptions.Size = new System.Drawing.Size(160, 70);
             this.flPaneOptions.TabIndex = 6;
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAbout.Image = global::Business_under_control.Properties.Resources.info;
+            this.btnAbout.Location = new System.Drawing.Point(0, 0);
+            this.btnAbout.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(80, 70);
+            this.btnAbout.TabIndex = 0;
+            this.btnAbout.Text = "About";
+            this.btnAbout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExit.Image = global::Business_under_control.Properties.Resources.exit;
+            this.btnExit.Location = new System.Drawing.Point(80, 0);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(80, 70);
+            this.btnExit.TabIndex = 1;
+            this.btnExit.Text = "Exit";
+            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // textBox1
             // 
@@ -195,7 +228,7 @@
             this.paneAlert.Name = "paneAlert";
             this.paneAlert.Size = new System.Drawing.Size(321, 112);
             this.paneAlert.TabIndex = 10;
-            this.paneAlert.Click += new System.EventHandler(this.paneAlert_Click);
+            this.paneAlert.Click += new System.EventHandler(this.openAlertWindow);
             // 
             // alertImage
             // 
@@ -207,39 +240,7 @@
             this.alertImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.alertImage.TabIndex = 1;
             this.alertImage.TabStop = false;
-            this.alertImage.Click += new System.EventHandler(this.alertImage_Click);
-            // 
-            // btnAbout
-            // 
-            this.btnAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAbout.Image = global::Business_under_control.Properties.Resources.info;
-            this.btnAbout.Location = new System.Drawing.Point(0, 0);
-            this.btnAbout.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(80, 70);
-            this.btnAbout.TabIndex = 0;
-            this.btnAbout.Text = "About";
-            this.btnAbout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit.Image = global::Business_under_control.Properties.Resources.exit;
-            this.btnExit.Location = new System.Drawing.Point(80, 0);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(0);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(80, 70);
-            this.btnExit.TabIndex = 1;
-            this.btnExit.Text = "Exit";
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.alertImage.Click += new System.EventHandler(this.openAlertWindow);
             // 
             // firmLogo
             // 
@@ -280,12 +281,28 @@
             this.lblWebsite.TabIndex = 13;
             this.lblWebsite.Text = "danmark.com";
             // 
+            // lblEditFirm
+            // 
+            this.lblEditFirm.AutoSize = true;
+            this.lblEditFirm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblEditFirm.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEditFirm.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblEditFirm.Location = new System.Drawing.Point(883, 162);
+            this.lblEditFirm.Name = "lblEditFirm";
+            this.lblEditFirm.Size = new System.Drawing.Size(25, 12);
+            this.lblEditFirm.TabIndex = 14;
+            this.lblEditFirm.Text = "Edit";
+            this.lblEditFirm.Click += new System.EventHandler(this.lblEditFirm_Click);
+            this.lblEditFirm.MouseEnter += new System.EventHandler(this.lblEditFirm_MouseEnter);
+            this.lblEditFirm.MouseLeave += new System.EventHandler(this.lblEditFirm_MouseLeave);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(934, 512);
+            this.Controls.Add(this.lblEditFirm);
             this.Controls.Add(this.lblWebsite);
             this.Controls.Add(this.lblTelephone);
             this.Controls.Add(this.lblMail);
@@ -335,6 +352,7 @@
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblTelephone;
         private System.Windows.Forms.Label lblWebsite;
+        private System.Windows.Forms.Label lblEditFirm;
     }
 }
 

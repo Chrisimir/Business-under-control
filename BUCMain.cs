@@ -12,9 +12,28 @@ namespace Business_under_control
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainScreen());
+            UI.StartGUI();
+        }
+
+        static void CheckRefreshTime()
+        {
+
+        }
+        static void CheckAlert()
+        {
+
+        }
+        static void SendAlert()
+        {
+
+        }
+        static void SaveData()
+        {
+
+        }
+        static void SendData()
+        {
+
         }
     }
 }
