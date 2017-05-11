@@ -9,9 +9,8 @@ namespace Business_under_control
 {
     class SearchFunctionality : DataFunction
     {
-        protected override void log()
+        SearchFunctionality(string name) : base(name)
         {
-            base.log();
         }
         List<string> Search()
         {

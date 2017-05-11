@@ -61,6 +61,8 @@
       <DependentUpon>AlertListWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Batch.cs" />
+    <Compile Include="Conections.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="DataFunction.cs" />
     <Compile Include="Establishment.cs" />
     <Compile Include="FirmEditScreen.cs">
@@ -69,6 +71,7 @@
     <Compile Include="FirmEditScreen.Designer.cs">
       <DependentUpon>FirmEditScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mail.cs" />
     <Compile Include="MainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +89,7 @@
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchFunctionality.cs" />
+    <Compile Include="Serialization.cs" />
     <Compile Include="StatisticsFunctionality.cs" />
     <Compile Include="StatisticsScreen.cs">
       <SubType>Form</SubType>
@@ -100,7 +104,7 @@
     <Compile Include="StockScreen.Designer.cs">
       <DependentUpon>StockScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Suplier.cs" />
+    <Compile Include="Supplier.cs" />
     <Compile Include="UI.cs" />
     <EmbeddedResource Include="AboutScreen.resx">
       <DependentUpon>AboutScreen.cs</DependentUpon>

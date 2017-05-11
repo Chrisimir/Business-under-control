@@ -9,9 +9,8 @@ namespace Business_under_control
 {
     class OrderFunctionality : DataFunction
     {
-        protected override void log()
+        OrderFunctionality(string name) : base(name)
         {
-            base.log();
         }
         List<object> CompareSuppliers()
         {

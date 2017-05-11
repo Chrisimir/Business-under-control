@@ -7,26 +7,43 @@ using System.Threading.Tasks;
 
 namespace Business_under_control
 {
-    // TODO: Change to a class
-    public struct ContactInfo
+    public static class Establishment
     {
-        public string telephone;
-        public string website;
-        public string email;
-    }
-    class Establishment
-    {
-        private string name;
-        private string pictureLocation;
-        private ContactInfo contactInfo;
+        static private string name;
+        static private string pictureLocation;
+        static private ContactInfo contactInfo;
 
-        public string Name{ get; set; }
-        public string PictureLocation{ get; set; }
-        public void SetContact(string telephone, string website, string email)
+        // Saves new data
+        public static void Save(string newName, /*string imageLocation,*/
+            string website, string phone, string mail)
         {
-            contactInfo.telephone = telephone;
-            contactInfo.website = website;
-            contactInfo.email = email;
+            if (!string.IsNullOrWhiteSpace(mail))
+                contactInfo.email = mail;
+            if (!string.IsNullOrWhiteSpace(phone))
+                contactInfo.telephone = phone;
+            if (!string.IsNullOrWhiteSpace(website))
+                contactInfo.website = website;
+            if (!string.IsNullOrWhiteSpace(newName))
+                name = newName;
         }
+
+        public static string GetName()
+        {
+            return name;
+        }
+        public static string GetMail()
+        {
+            return contactInfo.email;
+        }
+        public static string GetTelephone()
+        {
+            return contactInfo.telephone;
+        }
+        public static string GetWebsite()
+        {
+            return contactInfo.website;
+        }
+        // TODO: Get image to work
+        //public static string PictureLocation{ get; set; }
     }
 }

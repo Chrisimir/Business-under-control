@@ -9,11 +9,10 @@ namespace Business_under_control
 {
     class StockFunctionality : DataFunction
     {
-        protected override void log()
+        StockFunctionality(string name) : base(name)
         {
-            base.log();
-        }
 
+        }
         void Update()
         {
 

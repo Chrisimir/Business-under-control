@@ -12,6 +12,7 @@ namespace Business_under_control
         [STAThread]
         static void Main()
         {
+            //TODO: Load data 
             UI.StartGUI();
         }
 
@@ -35,5 +36,11 @@ namespace Business_under_control
         {
 
         }
+    }
+    public struct ContactInfo
+    {
+        public string telephone;
+        public string website;
+        public string email;
     }
 }

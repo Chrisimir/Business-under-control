@@ -34,7 +34,7 @@
             this.btnStock = new System.Windows.Forms.Button();
             this.lblAlertNum = new System.Windows.Forms.Label();
             this.lblAlert = new System.Windows.Forms.Label();
-            this.firmName = new System.Windows.Forms.Label();
+            this.lblFirmName = new System.Windows.Forms.Label();
             this.flPaneOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -107,17 +107,17 @@
             this.lblAlert.Text = "No alert.";
             this.lblAlert.Click += new System.EventHandler(this.openAlertWindow);
             // 
-            // firmName
+            // lblFirmName
             // 
-            this.firmName.AutoSize = true;
-            this.firmName.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firmName.Location = new System.Drawing.Point(797, 172);
-            this.firmName.MaximumSize = new System.Drawing.Size(120, 0);
-            this.firmName.Name = "firmName";
-            this.firmName.Size = new System.Drawing.Size(98, 36);
-            this.firmName.TabIndex = 5;
-            this.firmName.Text = "Restaurant Denmark";
-            this.firmName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFirmName.AutoSize = true;
+            this.lblFirmName.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFirmName.Location = new System.Drawing.Point(797, 172);
+            this.lblFirmName.MaximumSize = new System.Drawing.Size(120, 0);
+            this.lblFirmName.Name = "lblFirmName";
+            this.lblFirmName.Size = new System.Drawing.Size(98, 36);
+            this.lblFirmName.TabIndex = 5;
+            this.lblFirmName.Text = "Restaurant Denmark";
+            this.lblFirmName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flPaneOptions
             // 
@@ -311,7 +311,7 @@
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.flPaneOptions);
-            this.Controls.Add(this.firmName);
+            this.Controls.Add(this.lblFirmName);
             this.Controls.Add(this.firmLogo);
             this.Controls.Add(this.btnStock);
             this.Controls.Add(this.btnOrders);
@@ -322,6 +322,7 @@
             this.Name = "MainScreen";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "Business under control";
+            this.Load += new System.EventHandler(this.MainScreen_Load);
             this.flPaneOptions.ResumeLayout(false);
             this.paneAlert.ResumeLayout(false);
             this.paneAlert.PerformLayout();
@@ -340,7 +341,7 @@
         private System.Windows.Forms.PictureBox alertImage;
         private System.Windows.Forms.Label lblAlert;
         private System.Windows.Forms.PictureBox firmLogo;
-        private System.Windows.Forms.Label firmName;
+        private System.Windows.Forms.Label lblFirmName;
         private System.Windows.Forms.FlowLayoutPanel flPaneOptions;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Button btnExit;

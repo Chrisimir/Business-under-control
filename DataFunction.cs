@@ -10,11 +10,10 @@ namespace Business_under_control
     class DataFunction
     {
         protected string name;
-        protected DateTime timeNow = DateTime.Now;
 
-        virtual protected void log()
+        protected DataFunction(string name)
         {
-            // TODO: Log information about function
+            this.name = name;
         }
     }
 }

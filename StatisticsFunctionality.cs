@@ -9,11 +9,10 @@ namespace Business_under_control
 {
     class StatisticsFunctionality : DataFunction
     {
-        protected override void log()
+        StatisticsFunctionality(string name) : base(name)
         {
-            base.log();
-        }
 
+        }
         List<object> GetStatGraph()
         {
             return new List<object>();

@@ -27,6 +27,8 @@ namespace Business_under_control
                 alertWindow = new AlertListWindow();
                 alertWindow.Show();
             }
+            else
+                alertWindow.Focus();
         }
         
         private void btnExit_Click(object sender, EventArgs e)
@@ -42,6 +44,8 @@ namespace Business_under_control
                 aboutScreen = new AboutScreen();
                 aboutScreen.Show();
             }
+            else
+                aboutScreen.Focus();
         }
 
         private void lblEditFirm_MouseEnter(object sender, EventArgs e)
@@ -59,9 +63,25 @@ namespace Business_under_control
         {
             if (!firmEditScreen.Visible)
             {
-                firmEditScreen = new FirmEditScreen();
+                firmEditScreen = new FirmEditScreen(this);
                 firmEditScreen.Show();
             }
+            else
+                firmEditScreen.Focus();
         }
+
+        public void RefreshFirmData()
+        {
+            lblFirmName.Text = Establishment.GetName();
+            lblMail.Text = Establishment.GetMail();
+            lblTelephone.Text = Establishment.GetTelephone();
+            lblWebsite.Text = Establishment.GetWebsite();
+        }
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            // TODO: Check if there is a saved file before taking data
+            RefreshFirmData();
+        }
+
     }
 }
