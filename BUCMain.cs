@@ -12,7 +12,10 @@ namespace Business_under_control
         [STAThread]
         static void Main()
         {
-            //TODO: Load data 
+            // Load establishment data
+            Utilities.LoadSavedEstablishment();
+            //TODO: Load rest of data
+
             UI.StartGUI();
         }
 

@@ -31,11 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdersScreen));
             this.tabsOrder = new System.Windows.Forms.TabControl();
             this.tabCompareProviders = new System.Windows.Forms.TabPage();
-            this.tabEstimates = new System.Windows.Forms.TabPage();
-            this.tabListOrders = new System.Windows.Forms.TabPage();
             this.btnExit = new System.Windows.Forms.Button();
+            this.tabEstimates = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
+            this.tabListOrders = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnGenerateDataSheet = new System.Windows.Forms.Button();
             this.tabsOrder.SuspendLayout();
             this.tabCompareProviders.SuspendLayout();
             this.tabEstimates.SuspendLayout();
@@ -64,28 +65,6 @@
             this.tabCompareProviders.Text = "Compare Providers";
             this.tabCompareProviders.UseVisualStyleBackColor = true;
             // 
-            // tabEstimates
-            // 
-            this.tabEstimates.Controls.Add(this.button1);
-            this.tabEstimates.Location = new System.Drawing.Point(4, 22);
-            this.tabEstimates.Name = "tabEstimates";
-            this.tabEstimates.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEstimates.Size = new System.Drawing.Size(926, 486);
-            this.tabEstimates.TabIndex = 1;
-            this.tabEstimates.Text = "Estimates";
-            this.tabEstimates.UseVisualStyleBackColor = true;
-            // 
-            // tabListOrders
-            // 
-            this.tabListOrders.Controls.Add(this.button2);
-            this.tabListOrders.Location = new System.Drawing.Point(4, 22);
-            this.tabListOrders.Name = "tabListOrders";
-            this.tabListOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.tabListOrders.Size = new System.Drawing.Size(926, 486);
-            this.tabListOrders.TabIndex = 2;
-            this.tabListOrders.Text = "List orders";
-            this.tabListOrders.UseVisualStyleBackColor = true;
-            // 
             // btnExit
             // 
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -100,6 +79,17 @@
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExit.UseVisualStyleBackColor = true;
+            // 
+            // tabEstimates
+            // 
+            this.tabEstimates.Controls.Add(this.button1);
+            this.tabEstimates.Location = new System.Drawing.Point(4, 22);
+            this.tabEstimates.Name = "tabEstimates";
+            this.tabEstimates.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEstimates.Size = new System.Drawing.Size(926, 486);
+            this.tabEstimates.TabIndex = 1;
+            this.tabEstimates.Text = "Estimates";
+            this.tabEstimates.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -116,6 +106,18 @@
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // tabListOrders
+            // 
+            this.tabListOrders.Controls.Add(this.btnGenerateDataSheet);
+            this.tabListOrders.Controls.Add(this.button2);
+            this.tabListOrders.Location = new System.Drawing.Point(4, 22);
+            this.tabListOrders.Name = "tabListOrders";
+            this.tabListOrders.Padding = new System.Windows.Forms.Padding(3);
+            this.tabListOrders.Size = new System.Drawing.Size(926, 486);
+            this.tabListOrders.TabIndex = 2;
+            this.tabListOrders.Text = "List orders";
+            this.tabListOrders.UseVisualStyleBackColor = true;
+            // 
             // button2
             // 
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -130,6 +132,16 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnGenerateDataSheet
+            // 
+            this.btnGenerateDataSheet.Location = new System.Drawing.Point(388, 204);
+            this.btnGenerateDataSheet.Name = "btnGenerateDataSheet";
+            this.btnGenerateDataSheet.Size = new System.Drawing.Size(158, 23);
+            this.btnGenerateDataSheet.TabIndex = 3;
+            this.btnGenerateDataSheet.Text = "Generate datasheet";
+            this.btnGenerateDataSheet.UseVisualStyleBackColor = true;
+            this.btnGenerateDataSheet.Click += new System.EventHandler(this.button3_Click);
             // 
             // OrdersScreen
             // 
@@ -160,5 +172,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGenerateDataSheet;
     }
 }

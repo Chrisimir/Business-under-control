@@ -83,5 +83,16 @@ namespace Business_under_control
             RefreshFirmData();
         }
 
+        OrdersScreen ordersScreen = new OrdersScreen();
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            if (!ordersScreen.Visible)
+            {
+                ordersScreen = new OrdersScreen();
+                ordersScreen.Show();
+            }
+            else
+                ordersScreen.Focus();
+        }
     }
 }

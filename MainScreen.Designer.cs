@@ -73,6 +73,7 @@
             this.btnOrders.TabIndex = 1;
             this.btnOrders.Text = "Orders";
             this.btnOrders.UseVisualStyleBackColor = true;
+            this.btnOrders.Click += new System.EventHandler(this.btnOrders_Click);
             // 
             // btnStock
             // 

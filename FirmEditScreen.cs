@@ -28,10 +28,12 @@ namespace Business_under_control
             this.Close();
         }
 
-        // Updates information about the firm (user of program)
+        // Updates information about the firm
         private void btnSave_Click(object sender, EventArgs e)
         {
             Establishment.Save(tbName.Text, tbWebsite.Text, tbPhone.Text, tbMail.Text);
+            Utilities.SerializeEstablishmentData(Establishment.GetName(), Establishment.GetWebsite(), Establishment.GetTelephone(), Establishment.GetMail());
+
             // Update main screen
             mainScreen.RefreshFirmData();
         }
