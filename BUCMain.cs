@@ -40,10 +40,4 @@ namespace Business_under_control
 
         }
     }
-    public struct ContactInfo
-    {
-        public string telephone;
-        public string website;
-        public string email;
-    }
 }

@@ -12,6 +12,7 @@ namespace Business_under_control
 {
     class OrderFunctionality : DataFunction
     {
+        // TODO: Complete functions
         OrderFunctionality(string name) : base(name)
         {
         }
@@ -45,6 +46,14 @@ namespace Business_under_control
 
             workB.Write(outFile);
             outFile.Close();
+        }
+
+        // Creates txt file
+        public static void createTextFile(string path, List<string> lines)
+        {
+            lines.Insert(0, Establishment.GetName());
+
+            Utilities.SendLinesToTextFile(path + "Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".txt", lines);
         }
     }
 }

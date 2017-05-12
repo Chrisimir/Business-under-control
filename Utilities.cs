@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace Business_under_control
 {
+    public struct ContactInfo
+    {
+        public string telephone;
+        public string website;
+        public string email;
+    }
     [Serializable]
     public struct tempDataToSave
     {
@@ -19,6 +25,37 @@ namespace Business_under_control
     }
     public class Utilities
     {
+        public static void SendLinesToTextFile(string path, List<string> lines)
+        {
+            try
+            {
+                StreamWriter sw;
+                if (!File.Exists(path))
+                {
+                    sw = File.CreateText(path);
+                }
+                else
+                {
+                    int extraName = 1;
+                    while (File.Exists(path + extraName))
+                    {
+                        extraName++;
+                    }
+                    sw = File.CreateText(path + extraName);
+                }
+
+                foreach (var line in lines)
+                {
+                    sw.WriteLine(line);
+                }
+                sw.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public static void SerializeEstablishmentData(string name, string website, string telephone, string mail)
         {
             tempDataToSave toSerialize = new tempDataToSave();
