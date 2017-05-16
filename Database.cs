@@ -8,9 +8,12 @@ namespace Business_under_control
 {
     class Database : Conections
     {
+        private int timer;
         Database(string direction, short port, DateTime date) :
             base(direction, port, date)
-        { }
+        {
+            this.timer = 300;
+        }
 
         protected override void Connect()
         {
