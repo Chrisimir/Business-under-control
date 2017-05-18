@@ -43,14 +43,16 @@
             this.lstSearchResults = new System.Windows.Forms.ListBox();
             this.paneAlert = new System.Windows.Forms.Panel();
             this.alertImage = new System.Windows.Forms.PictureBox();
-            this.firmLogo = new System.Windows.Forms.PictureBox();
             this.lblMail = new System.Windows.Forms.Label();
             this.lblTelephone = new System.Windows.Forms.Label();
             this.lblWebsite = new System.Windows.Forms.Label();
             this.lblEditFirm = new System.Windows.Forms.Label();
+            this.pbRefresh = new System.Windows.Forms.PictureBox();
+            this.firmLogo = new System.Windows.Forms.PictureBox();
             this.flPaneOptions.SuspendLayout();
             this.paneAlert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alertImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.firmLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,6 +219,7 @@
             this.lstSearchResults.Name = "lstSearchResults";
             this.lstSearchResults.Size = new System.Drawing.Size(160, 176);
             this.lstSearchResults.TabIndex = 9;
+            this.lstSearchResults.Visible = false;
             // 
             // paneAlert
             // 
@@ -242,15 +245,6 @@
             this.alertImage.TabIndex = 1;
             this.alertImage.TabStop = false;
             this.alertImage.Click += new System.EventHandler(this.openAlertWindow);
-            // 
-            // firmLogo
-            // 
-            this.firmLogo.Image = global::Business_under_control.Properties.Resources.logo;
-            this.firmLogo.Location = new System.Drawing.Point(783, 34);
-            this.firmLogo.Name = "firmLogo";
-            this.firmLogo.Size = new System.Drawing.Size(125, 125);
-            this.firmLogo.TabIndex = 4;
-            this.firmLogo.TabStop = false;
             // 
             // lblMail
             // 
@@ -297,12 +291,35 @@
             this.lblEditFirm.MouseEnter += new System.EventHandler(this.lblEditFirm_MouseEnter);
             this.lblEditFirm.MouseLeave += new System.EventHandler(this.lblEditFirm_MouseLeave);
             // 
+            // pbRefresh
+            // 
+            this.pbRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRefresh.Image = global::Business_under_control.Properties.Resources.cloud_computing;
+            this.pbRefresh.Location = new System.Drawing.Point(360, 376);
+            this.pbRefresh.Name = "pbRefresh";
+            this.pbRefresh.Size = new System.Drawing.Size(37, 32);
+            this.pbRefresh.TabIndex = 15;
+            this.pbRefresh.TabStop = false;
+            this.pbRefresh.Click += new System.EventHandler(this.pbRefresh_Click);
+            this.pbRefresh.MouseHover += new System.EventHandler(this.pbRefresh_MouseHover);
+            // 
+            // firmLogo
+            // 
+            this.firmLogo.Image = global::Business_under_control.Properties.Resources.logo;
+            this.firmLogo.Location = new System.Drawing.Point(783, 34);
+            this.firmLogo.Name = "firmLogo";
+            this.firmLogo.Size = new System.Drawing.Size(125, 125);
+            this.firmLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.firmLogo.TabIndex = 4;
+            this.firmLogo.TabStop = false;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(934, 512);
+            this.Controls.Add(this.pbRefresh);
             this.Controls.Add(this.lblEditFirm);
             this.Controls.Add(this.lblWebsite);
             this.Controls.Add(this.lblTelephone);
@@ -328,6 +345,7 @@
             this.paneAlert.ResumeLayout(false);
             this.paneAlert.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alertImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.firmLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -355,6 +373,7 @@
         private System.Windows.Forms.Label lblTelephone;
         private System.Windows.Forms.Label lblWebsite;
         private System.Windows.Forms.Label lblEditFirm;
+        private System.Windows.Forms.PictureBox pbRefresh;
     }
 }
 

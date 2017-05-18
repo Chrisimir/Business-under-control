@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlertListWindow));
             this.lstAlerts = new System.Windows.Forms.ListBox();
             this.lblAlert = new System.Windows.Forms.Label();
+            this.lblNoAlerts = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstAlerts
@@ -42,6 +43,7 @@
             this.lstAlerts.Name = "lstAlerts";
             this.lstAlerts.Size = new System.Drawing.Size(381, 388);
             this.lstAlerts.TabIndex = 0;
+            this.lstAlerts.Visible = false;
             // 
             // lblAlert
             // 
@@ -53,16 +55,28 @@
             this.lblAlert.TabIndex = 1;
             this.lblAlert.Text = "Alerts";
             // 
+            // lblNoAlerts
+            // 
+            this.lblNoAlerts.AutoSize = true;
+            this.lblNoAlerts.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoAlerts.Location = new System.Drawing.Point(139, 193);
+            this.lblNoAlerts.Name = "lblNoAlerts";
+            this.lblNoAlerts.Size = new System.Drawing.Size(108, 25);
+            this.lblNoAlerts.TabIndex = 2;
+            this.lblNoAlerts.Text = "No alerts";
+            // 
             // AlertListWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 442);
+            this.Controls.Add(this.lblNoAlerts);
             this.Controls.Add(this.lblAlert);
             this.Controls.Add(this.lstAlerts);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AlertListWindow";
             this.Text = "Alerts";
+            this.Load += new System.EventHandler(this.AlertListWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,5 +86,6 @@
 
         private System.Windows.Forms.ListBox lstAlerts;
         private System.Windows.Forms.Label lblAlert;
+        private System.Windows.Forms.Label lblNoAlerts;
     }
 }

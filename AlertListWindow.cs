@@ -16,5 +16,16 @@ namespace Business_under_control
         {
             InitializeComponent();
         }
+
+        private void AlertListWindow_Load(object sender, EventArgs e)
+        {
+            // TODO: Load the alerts in the list
+
+            if (lstAlerts.Items.Count > 0)
+            {
+                lstAlerts.Visible = true;
+                lblAlert.Visible = false;
+            }
+        }
     }
 }

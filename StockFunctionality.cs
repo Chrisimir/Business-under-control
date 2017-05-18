@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business_under_control
 {
-    class StockFunctionality : DataFunction
+    class StockFunctionality
     {
-        StockFunctionality(string name) : base(name)
+        StockFunctionality(string name)
         {
 
         }

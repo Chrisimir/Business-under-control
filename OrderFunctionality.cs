@@ -10,15 +10,19 @@ using System.IO;
 
 namespace Business_under_control
 {
-    class OrderFunctionality : DataFunction
+    class OrderFunctionality
     {
-        // TODO: Complete functions
-        OrderFunctionality(string name) : base(name)
+        public OrderFunctionality()
         {
         }
-        List<object> CompareSuppliers()
+
+        // TODO: Complete functions
+        public void CompareSuppliers(
+            string supplier1, string supplier2, OrdersScreen orderScreen)
         {
-            return new List<object>();
+            // Get information of those suppliers
+
+            orderScreen.ShowSupplierComparison();
         }
         List<object> EstimateFutureOrders()
         {
@@ -34,26 +38,65 @@ namespace Business_under_control
         }
 
         // Creates spreadsheet
-        public static void createSpreadsheet(/*TODO: List of products 
-            & Supplier & Sheetname*/)
+        public static void createSpreadsheet(string path, List<string> lines)
         {
-            IWorkbook workB = new XSSFWorkbook();
+            try
+            {
+                IWorkbook workB = new XSSFWorkbook();
 
-            ISheet order = workB.CreateSheet("Order");
-            order.CreateRow(0).CreateCell(0).SetCellValue("Establishment: " + Establishment.GetName());
+                ISheet order = workB.CreateSheet("Order");
 
-            FileStream outFile = File.Create("Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".xlsx");
+                order.CreateRow(0).CreateCell(0).SetCellValue(
+                    "Establishment: " + Establishment.GetName());
 
-            workB.Write(outFile);
-            outFile.Close();
+                foreach (string line in lines)
+                {
+                    order.CreateRow(order.LastRowNum + 1).CreateCell(0).
+                        SetCellValue(line.Split('x')[0].Trim());
+                    IRow lastRow = order.GetRow(order.LastRowNum);
+                    lastRow.CreateCell(1).SetCellValue(line.Split('x')[1].Trim());
+                }
+
+                // Adds numbers at the end of the name if the file already exists
+                FileStream outFile;
+                if (!File.Exists(path))
+                {
+                    outFile =
+                        File.Create(path +
+                        "\\Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".xlsx");
+                }
+                else
+                {
+                    int extraName = 1;
+                    while (File.Exists(path + extraName))
+                    {
+                        extraName++;
+                    }
+                    outFile =
+                        File.Create(path +
+                        "\\Order" + DateTime.Now.ToString("dd-MM-yyyy") + extraName + ".xlsx");
+                }
+
+                workB.Write(outFile);
+                outFile.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // Creates txt file
         public static void createTextFile(string path, List<string> lines)
         {
+            lines.Insert(0, "------------------------------------------------------");
+            lines.Insert(0, Establishment.GetMail());
+            lines.Insert(0, Establishment.GetTelephone());
+            lines.Insert(0, Establishment.GetWebsite());
             lines.Insert(0, Establishment.GetName());
 
-            Utilities.SendLinesToTextFile(path + "Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".txt", lines);
+            Utilities.SendLinesToTextFile(path + "\\Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".txt", lines);
         }
     }
 }

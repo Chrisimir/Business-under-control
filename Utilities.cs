@@ -12,6 +12,7 @@ namespace Business_under_control
     public struct ContactInfo
     {
         public string telephone;
+        public string imageLocation;
         public string website;
         public string email;
     }
@@ -20,6 +21,7 @@ namespace Business_under_control
     {
         public string name;
         public string website;
+        public string imageLocation;
         public string telephone;
         public string mail;
     }
@@ -56,10 +58,11 @@ namespace Business_under_control
                 throw;
             }
         }
-        public static void SerializeEstablishmentData(string name, string website, string telephone, string mail)
+        public static void SerializeEstablishmentData(string name, string imageLocation, string website, string telephone, string mail)
         {
             tempDataToSave toSerialize = new tempDataToSave();
             toSerialize.name = name;
+            toSerialize.imageLocation = imageLocation;
             toSerialize.website = website;
             toSerialize.telephone = telephone;
             toSerialize.mail = mail;
@@ -79,7 +82,7 @@ namespace Business_under_control
                 FileAccess.Read, FileShare.Read);
             tempDataToSave toDeserialize = (tempDataToSave)formatter.Deserialize(stream);
             stream.Close();
-            Establishment.Save(toDeserialize.name, toDeserialize.website, toDeserialize.telephone, toDeserialize.mail);
+            Establishment.Save(toDeserialize.name, toDeserialize.imageLocation, toDeserialize.website, toDeserialize.telephone, toDeserialize.mail);
         }
     }
 }

@@ -31,6 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdersScreen));
             this.tabsOrder = new System.Windows.Forms.TabControl();
             this.tabCompareProviders = new System.Windows.Forms.TabPage();
+            this.gbByProduct = new System.Windows.Forms.GroupBox();
+            this.lblProduct = new System.Windows.Forms.Label();
+            this.cbProducts = new System.Windows.Forms.ComboBox();
+            this.btnCompareProducts = new System.Windows.Forms.Button();
+            this.gbCompProviders = new System.Windows.Forms.GroupBox();
+            this.cbProvider1 = new System.Windows.Forms.ComboBox();
+            this.cbProvider2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCompare = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnExitCompare = new System.Windows.Forms.Button();
             this.tabEstimates = new System.Windows.Forms.TabPage();
             this.btnExitOrdersEstimates = new System.Windows.Forms.Button();
@@ -39,20 +49,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelNewOrder = new System.Windows.Forms.Panel();
+            this.btnClearAll = new System.Windows.Forms.Button();
             this.btnProductRemove = new System.Windows.Forms.Button();
             this.lstNewOrder = new System.Windows.Forms.ListBox();
-            this.btnNewOrderDatasheet = new System.Windows.Forms.Button();
-            this.btnNewOrderTextFile = new System.Windows.Forms.Button();
+            this.btnSendToDatasheet = new System.Windows.Forms.Button();
+            this.btnSendToTextFile = new System.Windows.Forms.Button();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.lblNewOrders = new System.Windows.Forms.Label();
             this.cbNewOrders = new System.Windows.Forms.ComboBox();
             this.btnOldOrderDatasheet = new System.Windows.Forms.Button();
-            this.btnOldOrderText = new System.Windows.Forms.Button();
             this.lblOldOrders = new System.Windows.Forms.Label();
             this.cbOldOrders = new System.Windows.Forms.ComboBox();
             this.btnExitOrders = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabsOrder.SuspendLayout();
             this.tabCompareProviders.SuspendLayout();
+            this.gbByProduct.SuspendLayout();
+            this.gbCompProviders.SuspendLayout();
             this.tabEstimates.SuspendLayout();
             this.tabListOrders.SuspendLayout();
             this.panelNewOrder.SuspendLayout();
@@ -69,9 +82,12 @@
             this.tabsOrder.SelectedIndex = 0;
             this.tabsOrder.Size = new System.Drawing.Size(934, 512);
             this.tabsOrder.TabIndex = 0;
+            this.tabsOrder.SelectedIndexChanged += new System.EventHandler(this.tabsOrder_SelectedIndexChanged);
             // 
             // tabCompareProviders
             // 
+            this.tabCompareProviders.Controls.Add(this.gbByProduct);
+            this.tabCompareProviders.Controls.Add(this.gbCompProviders);
             this.tabCompareProviders.Controls.Add(this.btnExitCompare);
             this.tabCompareProviders.Location = new System.Drawing.Point(4, 25);
             this.tabCompareProviders.Name = "tabCompareProviders";
@@ -80,6 +96,103 @@
             this.tabCompareProviders.TabIndex = 0;
             this.tabCompareProviders.Text = "Compare Providers";
             this.tabCompareProviders.UseVisualStyleBackColor = true;
+            // 
+            // gbByProduct
+            // 
+            this.gbByProduct.Controls.Add(this.lblProduct);
+            this.gbByProduct.Controls.Add(this.cbProducts);
+            this.gbByProduct.Controls.Add(this.btnCompareProducts);
+            this.gbByProduct.Location = new System.Drawing.Point(8, 246);
+            this.gbByProduct.Name = "gbByProduct";
+            this.gbByProduct.Size = new System.Drawing.Size(326, 182);
+            this.gbByProduct.TabIndex = 11;
+            this.gbByProduct.TabStop = false;
+            this.gbByProduct.Text = "Compare suppliers by product";
+            // 
+            // lblProduct
+            // 
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.Location = new System.Drawing.Point(33, 44);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(59, 16);
+            this.lblProduct.TabIndex = 8;
+            this.lblProduct.Text = "Product";
+            // 
+            // cbProducts
+            // 
+            this.cbProducts.FormattingEnabled = true;
+            this.cbProducts.Location = new System.Drawing.Point(36, 63);
+            this.cbProducts.Name = "cbProducts";
+            this.cbProducts.Size = new System.Drawing.Size(228, 24);
+            this.cbProducts.TabIndex = 8;
+            // 
+            // btnCompareProducts
+            // 
+            this.btnCompareProducts.Location = new System.Drawing.Point(110, 114);
+            this.btnCompareProducts.Name = "btnCompareProducts";
+            this.btnCompareProducts.Size = new System.Drawing.Size(75, 23);
+            this.btnCompareProducts.TabIndex = 9;
+            this.btnCompareProducts.Text = "Compare";
+            this.btnCompareProducts.UseVisualStyleBackColor = true;
+            this.btnCompareProducts.Click += new System.EventHandler(this.btnCompareProducts_Click);
+            // 
+            // gbCompProviders
+            // 
+            this.gbCompProviders.Controls.Add(this.cbProvider1);
+            this.gbCompProviders.Controls.Add(this.cbProvider2);
+            this.gbCompProviders.Controls.Add(this.label3);
+            this.gbCompProviders.Controls.Add(this.btnCompare);
+            this.gbCompProviders.Controls.Add(this.label4);
+            this.gbCompProviders.Location = new System.Drawing.Point(8, 16);
+            this.gbCompProviders.Name = "gbCompProviders";
+            this.gbCompProviders.Size = new System.Drawing.Size(326, 200);
+            this.gbCompProviders.TabIndex = 10;
+            this.gbCompProviders.TabStop = false;
+            this.gbCompProviders.Text = "Compare providers";
+            // 
+            // cbProvider1
+            // 
+            this.cbProvider1.FormattingEnabled = true;
+            this.cbProvider1.Location = new System.Drawing.Point(48, 41);
+            this.cbProvider1.Name = "cbProvider1";
+            this.cbProvider1.Size = new System.Drawing.Size(228, 24);
+            this.cbProvider1.TabIndex = 3;
+            // 
+            // cbProvider2
+            // 
+            this.cbProvider2.FormattingEnabled = true;
+            this.cbProvider2.Location = new System.Drawing.Point(48, 111);
+            this.cbProvider2.Name = "cbProvider2";
+            this.cbProvider2.Size = new System.Drawing.Size(228, 24);
+            this.cbProvider2.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(45, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 16);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Provider 1";
+            // 
+            // btnCompare
+            // 
+            this.btnCompare.Location = new System.Drawing.Point(122, 162);
+            this.btnCompare.Name = "btnCompare";
+            this.btnCompare.Size = new System.Drawing.Size(75, 23);
+            this.btnCompare.TabIndex = 7;
+            this.btnCompare.Text = "Compare";
+            this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(45, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 16);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Provider 2";
             // 
             // btnExitCompare
             // 
@@ -95,7 +208,7 @@
             this.btnExitCompare.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExitCompare.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExitCompare.UseVisualStyleBackColor = true;
-            this.btnExitCompare.Click += new System.EventHandler(this.btnExitCompare_Click);
+            this.btnExitCompare.Click += new System.EventHandler(this.CloseWindow);
             // 
             // tabEstimates
             // 
@@ -122,7 +235,7 @@
             this.btnExitOrdersEstimates.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExitOrdersEstimates.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExitOrdersEstimates.UseVisualStyleBackColor = true;
-            this.btnExitOrdersEstimates.Click += new System.EventHandler(this.btnExitOrdersEstimates_Click);
+            this.btnExitOrdersEstimates.Click += new System.EventHandler(this.CloseWindow);
             // 
             // tabListOrders
             // 
@@ -134,7 +247,6 @@
             this.tabListOrders.Controls.Add(this.lblNewOrders);
             this.tabListOrders.Controls.Add(this.cbNewOrders);
             this.tabListOrders.Controls.Add(this.btnOldOrderDatasheet);
-            this.tabListOrders.Controls.Add(this.btnOldOrderText);
             this.tabListOrders.Controls.Add(this.lblOldOrders);
             this.tabListOrders.Controls.Add(this.cbOldOrders);
             this.tabListOrders.Controls.Add(this.btnExitOrders);
@@ -175,23 +287,37 @@
             // 
             // panelNewOrder
             // 
+            this.panelNewOrder.Controls.Add(this.btnClearAll);
             this.panelNewOrder.Controls.Add(this.btnProductRemove);
             this.panelNewOrder.Controls.Add(this.lstNewOrder);
-            this.panelNewOrder.Controls.Add(this.btnNewOrderDatasheet);
-            this.panelNewOrder.Controls.Add(this.btnNewOrderTextFile);
+            this.panelNewOrder.Controls.Add(this.btnSendToDatasheet);
+            this.panelNewOrder.Controls.Add(this.btnSendToTextFile);
             this.panelNewOrder.Location = new System.Drawing.Point(3, 3);
             this.panelNewOrder.Name = "panelNewOrder";
             this.panelNewOrder.Size = new System.Drawing.Size(466, 480);
             this.panelNewOrder.TabIndex = 11;
             // 
+            // btnClearAll
+            // 
+            this.btnClearAll.Enabled = false;
+            this.btnClearAll.Location = new System.Drawing.Point(389, 454);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Size = new System.Drawing.Size(74, 23);
+            this.btnClearAll.TabIndex = 11;
+            this.btnClearAll.Text = "Clear all";
+            this.btnClearAll.UseVisualStyleBackColor = true;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
+            // 
             // btnProductRemove
             // 
-            this.btnProductRemove.Location = new System.Drawing.Point(389, 429);
+            this.btnProductRemove.Enabled = false;
+            this.btnProductRemove.Location = new System.Drawing.Point(389, 425);
             this.btnProductRemove.Name = "btnProductRemove";
             this.btnProductRemove.Size = new System.Drawing.Size(74, 23);
             this.btnProductRemove.TabIndex = 10;
             this.btnProductRemove.Text = "Remove";
             this.btnProductRemove.UseVisualStyleBackColor = true;
+            this.btnProductRemove.Click += new System.EventHandler(this.btnProductRemove_Click);
             // 
             // lstNewOrder
             // 
@@ -202,25 +328,25 @@
             this.lstNewOrder.Size = new System.Drawing.Size(458, 420);
             this.lstNewOrder.TabIndex = 9;
             // 
-            // btnNewOrderDatasheet
+            // btnSendToDatasheet
             // 
-            this.btnNewOrderDatasheet.Location = new System.Drawing.Point(5, 453);
-            this.btnNewOrderDatasheet.Name = "btnNewOrderDatasheet";
-            this.btnNewOrderDatasheet.Size = new System.Drawing.Size(158, 23);
-            this.btnNewOrderDatasheet.TabIndex = 3;
-            this.btnNewOrderDatasheet.Text = "Generate datasheet";
-            this.btnNewOrderDatasheet.UseVisualStyleBackColor = true;
-            this.btnNewOrderDatasheet.Click += new System.EventHandler(this.btnNewOrderDatasheet_Click);
+            this.btnSendToDatasheet.Location = new System.Drawing.Point(5, 453);
+            this.btnSendToDatasheet.Name = "btnSendToDatasheet";
+            this.btnSendToDatasheet.Size = new System.Drawing.Size(158, 23);
+            this.btnSendToDatasheet.TabIndex = 3;
+            this.btnSendToDatasheet.Text = "Generate datasheet";
+            this.btnSendToDatasheet.UseVisualStyleBackColor = true;
+            this.btnSendToDatasheet.Click += new System.EventHandler(this.btnNewOrderDatasheet_Click);
             // 
-            // btnNewOrderTextFile
+            // btnSendToTextFile
             // 
-            this.btnNewOrderTextFile.Location = new System.Drawing.Point(5, 424);
-            this.btnNewOrderTextFile.Name = "btnNewOrderTextFile";
-            this.btnNewOrderTextFile.Size = new System.Drawing.Size(158, 23);
-            this.btnNewOrderTextFile.TabIndex = 8;
-            this.btnNewOrderTextFile.Text = "Generate text file";
-            this.btnNewOrderTextFile.UseVisualStyleBackColor = true;
-            this.btnNewOrderTextFile.Click += new System.EventHandler(this.btnNewOrderTextFile_Click);
+            this.btnSendToTextFile.Location = new System.Drawing.Point(5, 424);
+            this.btnSendToTextFile.Name = "btnSendToTextFile";
+            this.btnSendToTextFile.Size = new System.Drawing.Size(158, 23);
+            this.btnSendToTextFile.TabIndex = 8;
+            this.btnSendToTextFile.Text = "Generate text file";
+            this.btnSendToTextFile.UseVisualStyleBackColor = true;
+            this.btnSendToTextFile.Click += new System.EventHandler(this.btnNewOrderTextFile_Click);
             // 
             // btnAddProduct
             // 
@@ -260,21 +386,12 @@
             // 
             // btnOldOrderDatasheet
             // 
-            this.btnOldOrderDatasheet.Location = new System.Drawing.Point(753, 90);
+            this.btnOldOrderDatasheet.Location = new System.Drawing.Point(753, 106);
             this.btnOldOrderDatasheet.Name = "btnOldOrderDatasheet";
-            this.btnOldOrderDatasheet.Size = new System.Drawing.Size(158, 23);
+            this.btnOldOrderDatasheet.Size = new System.Drawing.Size(68, 24);
             this.btnOldOrderDatasheet.TabIndex = 4;
-            this.btnOldOrderDatasheet.Text = "Generate datasheet";
+            this.btnOldOrderDatasheet.Text = "See";
             this.btnOldOrderDatasheet.UseVisualStyleBackColor = true;
-            // 
-            // btnOldOrderText
-            // 
-            this.btnOldOrderText.Location = new System.Drawing.Point(753, 119);
-            this.btnOldOrderText.Name = "btnOldOrderText";
-            this.btnOldOrderText.Size = new System.Drawing.Size(158, 23);
-            this.btnOldOrderText.TabIndex = 6;
-            this.btnOldOrderText.Text = "Generate text file";
-            this.btnOldOrderText.UseVisualStyleBackColor = true;
             // 
             // lblOldOrders
             // 
@@ -308,7 +425,7 @@
             this.btnExitOrders.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExitOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExitOrders.UseVisualStyleBackColor = true;
-            this.btnExitOrders.Click += new System.EventHandler(this.btnExitOrders_Click);
+            this.btnExitOrders.Click += new System.EventHandler(this.CloseWindow);
             // 
             // OrdersScreen
             // 
@@ -322,8 +439,13 @@
             this.MinimumSize = new System.Drawing.Size(950, 550);
             this.Name = "OrdersScreen";
             this.Text = "Orders";
+            this.Load += new System.EventHandler(this.OrdersScreen_Load);
             this.tabsOrder.ResumeLayout(false);
             this.tabCompareProviders.ResumeLayout(false);
+            this.gbByProduct.ResumeLayout(false);
+            this.gbByProduct.PerformLayout();
+            this.gbCompProviders.ResumeLayout(false);
+            this.gbCompProviders.PerformLayout();
             this.tabEstimates.ResumeLayout(false);
             this.tabListOrders.ResumeLayout(false);
             this.tabListOrders.PerformLayout();
@@ -341,13 +463,12 @@
         private System.Windows.Forms.Button btnExitCompare;
         private System.Windows.Forms.Button btnExitOrdersEstimates;
         private System.Windows.Forms.Button btnExitOrders;
-        private System.Windows.Forms.Button btnNewOrderDatasheet;
+        private System.Windows.Forms.Button btnSendToDatasheet;
         private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.Label lblNewOrders;
         private System.Windows.Forms.ComboBox cbNewOrders;
         private System.Windows.Forms.Button btnOldOrderDatasheet;
-        private System.Windows.Forms.Button btnNewOrderTextFile;
-        private System.Windows.Forms.Button btnOldOrderText;
+        private System.Windows.Forms.Button btnSendToTextFile;
         private System.Windows.Forms.Label lblOldOrders;
         private System.Windows.Forms.ComboBox cbOldOrders;
         private System.Windows.Forms.Label label2;
@@ -356,5 +477,17 @@
         private System.Windows.Forms.Button btnProductRemove;
         private System.Windows.Forms.ListBox lstNewOrder;
         private System.Windows.Forms.TextBox tbQuantity;
+        private System.Windows.Forms.Button btnClearAll;
+        private System.Windows.Forms.Button btnCompare;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbProvider2;
+        private System.Windows.Forms.ComboBox cbProvider1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox gbByProduct;
+        private System.Windows.Forms.Label lblProduct;
+        private System.Windows.Forms.ComboBox cbProducts;
+        private System.Windows.Forms.Button btnCompareProducts;
+        private System.Windows.Forms.GroupBox gbCompProviders;
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business_under_control
 {
-    class SearchFunctionality : DataFunction
+    class SearchFunctionality
     {
-        SearchFunctionality(string name) : base(name)
+        SearchFunctionality(string name)
         {
         }
         List<string> Search()

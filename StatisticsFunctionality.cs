@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Business_under_control
 {
-    class StatisticsFunctionality : DataFunction
+    class StatisticsFunctionality
     {
-        StatisticsFunctionality(string name) : base(name)
+        StatisticsFunctionality(string name)
         {
 
         }

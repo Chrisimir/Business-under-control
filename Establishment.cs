@@ -13,11 +13,10 @@ namespace Business_under_control
     public static class Establishment
     {
         static private string name;
-        static private string pictureLocation;
         static private ContactInfo contactInfo;
 
         // Saves new data
-        public static void Save(string newName, /*string imageLocation,*/
+        public static void Save(string newName, string imageLocation,
             string website, string phone, string mail)
         {
             if (!string.IsNullOrWhiteSpace(mail))
@@ -28,6 +27,8 @@ namespace Business_under_control
                 contactInfo.website = website;
             if (!string.IsNullOrWhiteSpace(newName))
                 name = newName;
+            if (!string.IsNullOrWhiteSpace(imageLocation))
+                contactInfo.imageLocation = imageLocation;
         }
         public static string GetName()
         {
@@ -45,7 +46,9 @@ namespace Business_under_control
         {
             return contactInfo.website;
         }
-        // TODO: Get image to work
-        //public static string PictureLocation{ get; set; }
+        public static string GetImageLocation()
+        {
+            return contactInfo.imageLocation;
+        }
     }
 }

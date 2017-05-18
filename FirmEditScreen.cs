@@ -21,6 +21,7 @@ namespace Business_under_control
     {
         private MainScreen mainScreen;
         private string logoFilePath;
+
         public FirmEditScreen(MainScreen mainScreen)
         {
             this.mainScreen = mainScreen;
@@ -39,8 +40,8 @@ namespace Business_under_control
         // Updates information about the firm
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Establishment.Save(tbName.Text, tbWebsite.Text, tbPhone.Text, tbMail.Text);
-            Utilities.SerializeEstablishmentData(Establishment.GetName(),
+            Establishment.Save(tbName.Text, logoFilePath, tbWebsite.Text, tbPhone.Text, tbMail.Text);
+            Utilities.SerializeEstablishmentData(Establishment.GetName(), Establishment.GetImageLocation(),
                 Establishment.GetWebsite(), Establishment.GetTelephone(), Establishment.GetMail());
 
             // Update main screen
@@ -49,8 +50,11 @@ namespace Business_under_control
 
         private void btnChangeImage_Click(object sender, EventArgs e)
         {
+            // TODO: Copy to exe directory and resize to fit the image
             OpenFileDialog imageFile = new OpenFileDialog();
-            imageFile.Title = "Open Image"; //Change title of the search file window
+
+            // Name of the folder navigation window
+            imageFile.Title = "Select logo";
 
             //Gets the path of the list directory used to set an image
             string exeFile = (new Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
