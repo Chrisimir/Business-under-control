@@ -1,13 +1,4 @@
-﻿/*Developers: Chris Lund Schobert, Manuel Coronado
- *Version 0.06 -- 15-May-2017 / 16-May-2017
- *Changes:
- * btnChangeImage_Click method added, now it can change the images
- * by choosing them from a file
- * 
- * TODO: Save the image after it changes
- *       It needs to change the resources
- *       of the app to change the image when it loads
- */
+﻿// Chris Lund Schober
 
 using System;
 using System.Drawing;
@@ -17,12 +8,16 @@ using System.Windows.Forms;
 
 namespace Business_under_control
 {
+    /*
+     * Firm Edit Screen - The screen dedicated to editing
+     *  the information about the firm.
+     */
     public partial class FirmEditScreen : Form
     {
-        private MainScreen mainScreen;
+        private MainForm mainScreen;
         private string logoFilePath;
 
-        public FirmEditScreen(MainScreen mainScreen)
+        public FirmEditScreen(MainForm mainScreen)
         {
             this.mainScreen = mainScreen;
             InitializeComponent();
@@ -40,9 +35,12 @@ namespace Business_under_control
         // Updates information about the firm
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Establishment.Save(tbName.Text, logoFilePath, tbWebsite.Text, tbPhone.Text, tbMail.Text);
-            Utilities.SerializeEstablishmentData(Establishment.GetName(), Establishment.GetImageLocation(),
-                Establishment.GetWebsite(), Establishment.GetTelephone(), Establishment.GetMail());
+            Establishment.Save(tbName.Text, logoFilePath, tbWebsite.Text,
+                tbPhone.Text, tbMail.Text);
+            Utilities.SerializeEstablishmentData(Establishment.GetName(),
+                Establishment.GetImageLocation(),
+                Establishment.GetWebsite(), Establishment.GetTelephone(),
+                Establishment.GetMail());
 
             // Update main screen
             mainScreen.RefreshFirmData();
@@ -57,7 +55,8 @@ namespace Business_under_control
             imageFile.Title = "Select logo";
 
             //Gets the path of the list directory used to set an image
-            string exeFile = (new Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
+            string exeFile = 
+                (new Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
             string exeDir = Path.GetDirectoryName(exeFile);
             
             imageFile.InitialDirectory = exeDir;

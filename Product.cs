@@ -1,12 +1,10 @@
 ﻿// Chris Lund Schober
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_under_control
 {
+    /*
+     * Product - Contains the data of the products.
+     */
     class Product
     {
         string name;

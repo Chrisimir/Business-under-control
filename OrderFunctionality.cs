@@ -1,24 +1,20 @@
 ﻿// Chris Lund Schober
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.IO;
 
 namespace Business_under_control
 {
+    /*
+     * Order Functionality - Contains the functions regarding the orders.
+     */
     class OrderFunctionality
     {
-        public OrderFunctionality()
-        {
-        }
-
         // TODO: Complete functions
         public void CompareSuppliers(
-            string supplier1, string supplier2, OrdersScreen orderScreen)
+            string supplier1, string supplier2, OrdersForm orderScreen)
         {
             // Get information of those suppliers
 
@@ -98,5 +94,7 @@ namespace Business_under_control
 
             Utilities.SendLinesToTextFile(path + "\\Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".txt", lines);
         }
+
+        //public static AggregateOrder()
     }
 }

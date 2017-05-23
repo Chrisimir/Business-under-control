@@ -1,20 +1,19 @@
 ﻿// Chris Lund Schober
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace Business_under_control
 {
+    /*
+     * UI - Handles the UI call.
+     */
     class UI
     {
-        public static void StartGUI()
+        public void StartGUI()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainScreen());
+            Application.Run(new MainForm());
         }
     }
 }

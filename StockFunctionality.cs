@@ -1,12 +1,12 @@
 ﻿// Chris Lund Schober
-using System;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_under_control
 {
+    /*
+     * Stock Functionality - Contains the functions regarding the stock.
+     */
     class StockFunctionality
     {
         StockFunctionality(string name)

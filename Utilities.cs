@@ -1,14 +1,16 @@
-﻿using System;
+﻿// Chris Lund Schober
+
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_under_control
 {
+    /*
+     * Utilities - Contains program general information and functions.
+     */
     public struct ContactInfo
     {
         public string telephone;
@@ -58,7 +60,8 @@ namespace Business_under_control
                 throw;
             }
         }
-        public static void SerializeEstablishmentData(string name, string imageLocation, string website, string telephone, string mail)
+        public static void SerializeEstablishmentData(string name,
+            string imageLocation, string website, string telephone, string mail)
         {
             tempDataToSave toSerialize = new tempDataToSave();
             toSerialize.name = name;
@@ -68,21 +71,40 @@ namespace Business_under_control
             toSerialize.mail = mail;
 
             // Serializes data
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("EstablishmentData.bin", FileMode.Create,
-                FileAccess.Write, FileShare.None);
-            formatter.Serialize(stream, toSerialize);
-            stream.Close();
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("EstablishmentData.bin", FileMode.Create,
+                    FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, toSerialize);
+                stream.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public static void LoadSavedEstablishment()
         {
             // Deserializes data
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("EstablishmentData.bin", FileMode.Open,
-                FileAccess.Read, FileShare.Read);
-            tempDataToSave toDeserialize = (tempDataToSave)formatter.Deserialize(stream);
-            stream.Close();
-            Establishment.Save(toDeserialize.name, toDeserialize.imageLocation, toDeserialize.website, toDeserialize.telephone, toDeserialize.mail);
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("EstablishmentData.bin", FileMode.Open,
+                    FileAccess.Read, FileShare.Read);
+                tempDataToSave toDeserialize =
+                    (tempDataToSave)formatter.Deserialize(stream);
+                stream.Close();
+                Establishment.Save(toDeserialize.name,
+                    toDeserialize.imageLocation, toDeserialize.website,
+                    toDeserialize.telephone, toDeserialize.mail);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

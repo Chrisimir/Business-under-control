@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Chris Lund Schober
+
+using System;
 using System.Windows.Forms;
 
 namespace Business_under_control
 {
+    /*
+     * Alert List Window - The screen that contains the list of alerts
+     */
     public partial class AlertListWindow : Form
     {
         public AlertListWindow()

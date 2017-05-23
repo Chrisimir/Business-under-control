@@ -1,12 +1,12 @@
 ﻿// Chris Lund Schober
-using System;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_under_control
 {
+    /*
+     * Statistics Functionlity - Contains the functions about statistics.
+     */
     class StatisticsFunctionality
     {
         StatisticsFunctionality(string name)

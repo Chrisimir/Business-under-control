@@ -1,16 +1,12 @@
 ﻿// Chris Lund Schober
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_under_control
 {
-    public static class Establishment
+    /*
+     * Establishment - Contains the data and the functions regarging
+     *  the establishment using the software.
+     */
+    public class Establishment
     {
         static private string name;
         static private ContactInfo contactInfo;

@@ -1,12 +1,12 @@
 ﻿// Chris Lund Schober
-using System;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business_under_control
 {
+    /*
+     * Alert Manager - Manages the alerts. Primarily it checks for new alerts.
+     */
     class AlertManager
     {
         List<Alert> alertList;

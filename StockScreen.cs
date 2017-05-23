@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Chris Lund Schober
+
 using System.Windows.Forms;
 
 namespace Business_under_control
 {
+    /*
+     * Stock Screen - The stock window.
+     */
     public partial class StockScreen : Form
     {
         public StockScreen()

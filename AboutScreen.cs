@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Chris Lund Schober
+using System;
 using System.Windows.Forms;
 
 namespace Business_under_control
 {
+    /*
+     * About Screen - Has information about the program and the creator
+     */
     public partial class AboutScreen : Form
     {
         public AboutScreen()
@@ -20,16 +17,6 @@ namespace Business_under_control
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

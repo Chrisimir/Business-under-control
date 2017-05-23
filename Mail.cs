@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Chris Lund Schober
+
+using System;
 
 namespace Business_under_control
 {
-    class Mail : Conections
+    /*
+     * Mail - Controls the mail connections.
+     */
+    class Mail : Connection
     {
         private string mail;
         Mail(string direction, string mail, short port, DateTime date) :

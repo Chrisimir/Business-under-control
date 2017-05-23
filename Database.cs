@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using MySql.Data;
+﻿// Chris Lund Schober
+
+using System;
 using MySql.Data.MySqlClient;
+using System.Data;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms;
 
 namespace Business_under_control
 {
-    class Database : Conections
+    /*
+     * Database - Manages the Database conection.
+     */
+    class Database : Connection
     {
         MySqlConnection connection;
         string user;
@@ -17,63 +20,66 @@ namespace Business_under_control
         string password;
         string connectStr;
 
-        // TODO: Insert real data in parameters
-        public Database() : base("localhost", 69, new DateTime())
+        public Database() :
+            base("europe-60.banahosting.com", 3306, DateTime.Now)
         {
-            user = "";
-            database = "";
+            user = "cmosmqez_BUC";
+            database = "cmosmqez_stockDB";
             // Loads password from a txt so it isn't visible in the code
             password = base.GetPassword("dbpass");
 
-            connectStr = "server=" + direction +
-                        ";user=" + user +
-                        ";database=" + database +
-                        ";port=" + port +
-                        ";password=" + password;
+            connectStr =
+                @"SERVER='" + direction + "';" +
+                @"DATABASE='" + database + "';" +
+                @"UID='"+ user + "';" +
+                @"PASSWORD='" + password + "'";
+
             connection = new MySqlConnection(connectStr);
         }
 
         public void Sync()
         {
-            string syncFetchQ = ""; // TODO: Add correct query 
+            string syncFetchQ = @"select * from suppliers"; // TODO: Add correct query 
             string syncPushQ = ""; // TODO: Add correct query 
 
-            Fetch(new MySqlCommand(syncFetchQ));
-            Push(new MySqlCommand(syncPushQ));
+            // TODO: Change
+            foreach (DataRow row in Fetch(syncFetchQ).Rows)
+            {
+                System.Diagnostics.Debug.WriteLine(row["name"].ToString());
+            };
+            //Push(syncPushQ);
 
             // Manages new alerts from data
             new AlertManager();
         }
 
-        List<string> Fetch(MySqlCommand command)
+        DataTable Fetch(string queryString)
         {
-            List<string> fetchedResult = new List<string>();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = queryString;
+
             try
             {
+                MySqlDataReader sqlReader;
                 connection.Open();
-                MySqlDataReader fetched = command.ExecuteReader();
-                while (fetched.Read())
-                {
-                    foreach (var result in fetched)
-                    {
-                        fetchedResult.Add(result.ToString());
-                    }
-                }
-                connection.Close();
+                sqlReader = command.ExecuteReader();
+                DataTable fetchedTable = new DataTable();
+                fetchedTable.Load(sqlReader);
+
+                return fetchedTable;
             }
             catch (Exception)
             {
                 throw;
             }
-            return fetchedResult;
         }
 
-        void Push(MySqlCommand command)
+        void Push(string queryString)
         {
             try
             {
                 connection.Open();
-                command.ExecuteNonQuery();
+                //command.ExecuteNonQuery();
                 connection.Close();
             }
             catch (Exception)

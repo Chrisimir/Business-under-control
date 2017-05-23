@@ -51,7 +51,6 @@
             this.textBox1.Size = new System.Drawing.Size(381, 32);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "BUSSINESS UNDER CONTROL";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -66,7 +65,6 @@
             this.textBox2.Size = new System.Drawing.Size(453, 32);
             this.textBox2.TabIndex = 4;
             this.textBox2.Text = "Project Leader - Chris Lund Schober";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
