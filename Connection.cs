@@ -21,10 +21,6 @@ namespace Business_under_control
             this.date = date;
         }
 
-        virtual protected void Connect()
-        {
-        }
-
         virtual protected string GetPassword(string path)
         {
             if (File.Exists(path))

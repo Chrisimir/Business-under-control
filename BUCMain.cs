@@ -14,7 +14,8 @@ namespace Business_under_control
         {
             // Starts connection with database
             Database database = new Database();
-            // TODO: Start when data there database.Sync();
+            database.Sync();
+
             // Load establishment data
             Utilities.LoadSavedEstablishment();
             //TODO: Load rest of data

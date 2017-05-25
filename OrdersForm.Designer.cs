@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdersForm));
             this.tabsOrder = new System.Windows.Forms.TabControl();
             this.tabCompareProviders = new System.Windows.Forms.TabPage();
+            this.dgvSupp2 = new System.Windows.Forms.DataGridView();
+            this.dgvSupp1 = new System.Windows.Forms.DataGridView();
             this.gbByProduct = new System.Windows.Forms.GroupBox();
             this.lblProduct = new System.Windows.Forms.Label();
             this.cbProducts = new System.Windows.Forms.ComboBox();
@@ -45,7 +48,7 @@
             this.tabEstimates = new System.Windows.Forms.TabPage();
             this.btnExitOrdersEstimates = new System.Windows.Forms.Button();
             this.tabListOrders = new System.Windows.Forms.TabPage();
-            this.tbQuantity = new System.Windows.Forms.TextBox();
+            this.nudQuantity = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelNewOrder = new System.Windows.Forms.Panel();
@@ -57,19 +60,24 @@
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.lblNewOrders = new System.Windows.Forms.Label();
             this.cbNewOrders = new System.Windows.Forms.ComboBox();
-            this.btnOldOrderDatasheet = new System.Windows.Forms.Button();
+            this.btnOldOrderSee = new System.Windows.Forms.Button();
             this.lblOldOrders = new System.Windows.Forms.Label();
             this.cbOldOrders = new System.Windows.Forms.ComboBox();
             this.btnExitOrders = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lblProdName = new System.Windows.Forms.Label();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabsOrder.SuspendLayout();
             this.tabCompareProviders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupp2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupp1)).BeginInit();
             this.gbByProduct.SuspendLayout();
             this.gbCompProviders.SuspendLayout();
             this.tabEstimates.SuspendLayout();
             this.tabListOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             this.panelNewOrder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabsOrder
@@ -83,11 +91,12 @@
             this.tabsOrder.SelectedIndex = 0;
             this.tabsOrder.Size = new System.Drawing.Size(934, 512);
             this.tabsOrder.TabIndex = 0;
-            this.tabsOrder.SelectedIndexChanged += new System.EventHandler(this.tabsOrder_SelectedIndexChanged);
             // 
             // tabCompareProviders
             // 
-            this.tabCompareProviders.Controls.Add(this.listView1);
+            this.tabCompareProviders.Controls.Add(this.lblProdName);
+            this.tabCompareProviders.Controls.Add(this.dgvSupp2);
+            this.tabCompareProviders.Controls.Add(this.dgvSupp1);
             this.tabCompareProviders.Controls.Add(this.gbByProduct);
             this.tabCompareProviders.Controls.Add(this.gbCompProviders);
             this.tabCompareProviders.Controls.Add(this.btnExitCompare);
@@ -98,6 +107,29 @@
             this.tabCompareProviders.TabIndex = 0;
             this.tabCompareProviders.Text = "Compare Providers";
             this.tabCompareProviders.UseVisualStyleBackColor = true;
+            // 
+            // dgvSupp2
+            // 
+            this.dgvSupp2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvSupp2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSupp2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSupp2.Location = new System.Drawing.Point(377, 246);
+            this.dgvSupp2.Name = "dgvSupp2";
+            this.dgvSupp2.Size = new System.Drawing.Size(541, 106);
+            this.dgvSupp2.TabIndex = 13;
+            this.dgvSupp2.Visible = false;
+            // 
+            // dgvSupp1
+            // 
+            this.dgvSupp1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSupp1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvSupp1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSupp1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSupp1.Location = new System.Drawing.Point(377, 95);
+            this.dgvSupp1.Name = "dgvSupp1";
+            this.dgvSupp1.Size = new System.Drawing.Size(541, 106);
+            this.dgvSupp1.TabIndex = 12;
+            this.dgvSupp1.Visible = false;
             // 
             // gbByProduct
             // 
@@ -122,6 +154,7 @@
             // 
             // cbProducts
             // 
+            this.cbProducts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProducts.FormattingEnabled = true;
             this.cbProducts.Location = new System.Drawing.Point(36, 63);
             this.cbProducts.Name = "cbProducts";
@@ -154,6 +187,7 @@
             // 
             // cbProvider1
             // 
+            this.cbProvider1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvider1.FormattingEnabled = true;
             this.cbProvider1.Location = new System.Drawing.Point(48, 41);
             this.cbProvider1.Name = "cbProvider1";
@@ -162,6 +196,7 @@
             // 
             // cbProvider2
             // 
+            this.cbProvider2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvider2.FormattingEnabled = true;
             this.cbProvider2.Location = new System.Drawing.Point(48, 111);
             this.cbProvider2.Name = "cbProvider2";
@@ -241,14 +276,14 @@
             // 
             // tabListOrders
             // 
-            this.tabListOrders.Controls.Add(this.tbQuantity);
+            this.tabListOrders.Controls.Add(this.nudQuantity);
             this.tabListOrders.Controls.Add(this.label2);
             this.tabListOrders.Controls.Add(this.label1);
             this.tabListOrders.Controls.Add(this.panelNewOrder);
             this.tabListOrders.Controls.Add(this.btnAddProduct);
             this.tabListOrders.Controls.Add(this.lblNewOrders);
             this.tabListOrders.Controls.Add(this.cbNewOrders);
-            this.tabListOrders.Controls.Add(this.btnOldOrderDatasheet);
+            this.tabListOrders.Controls.Add(this.btnOldOrderSee);
             this.tabListOrders.Controls.Add(this.lblOldOrders);
             this.tabListOrders.Controls.Add(this.cbOldOrders);
             this.tabListOrders.Controls.Add(this.btnExitOrders);
@@ -260,12 +295,12 @@
             this.tabListOrders.Text = "List orders";
             this.tabListOrders.UseVisualStyleBackColor = true;
             // 
-            // tbQuantity
+            // nudQuantity
             // 
-            this.tbQuantity.Location = new System.Drawing.Point(768, 290);
-            this.tbQuantity.Name = "tbQuantity";
-            this.tbQuantity.Size = new System.Drawing.Size(53, 23);
-            this.tbQuantity.TabIndex = 15;
+            this.nudQuantity.Location = new System.Drawing.Point(768, 290);
+            this.nudQuantity.Name = "nudQuantity";
+            this.nudQuantity.Size = new System.Drawing.Size(53, 23);
+            this.nudQuantity.TabIndex = 16;
             // 
             // label2
             // 
@@ -372,28 +407,22 @@
             // 
             // cbNewOrders
             // 
+            this.cbNewOrders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbNewOrders.FormattingEnabled = true;
-            this.cbNewOrders.Items.AddRange(new object[] {
-            "Fries",
-            "Chips",
-            "Potatoes",
-            "Crisps",
-            "Lays",
-            "Cheetos",
-            "Pringles"});
             this.cbNewOrders.Location = new System.Drawing.Point(509, 290);
             this.cbNewOrders.Name = "cbNewOrders";
             this.cbNewOrders.Size = new System.Drawing.Size(238, 24);
             this.cbNewOrders.TabIndex = 9;
             // 
-            // btnOldOrderDatasheet
+            // btnOldOrderSee
             // 
-            this.btnOldOrderDatasheet.Location = new System.Drawing.Point(753, 106);
-            this.btnOldOrderDatasheet.Name = "btnOldOrderDatasheet";
-            this.btnOldOrderDatasheet.Size = new System.Drawing.Size(68, 24);
-            this.btnOldOrderDatasheet.TabIndex = 4;
-            this.btnOldOrderDatasheet.Text = "See";
-            this.btnOldOrderDatasheet.UseVisualStyleBackColor = true;
+            this.btnOldOrderSee.Location = new System.Drawing.Point(831, 106);
+            this.btnOldOrderSee.Name = "btnOldOrderSee";
+            this.btnOldOrderSee.Size = new System.Drawing.Size(68, 24);
+            this.btnOldOrderSee.TabIndex = 4;
+            this.btnOldOrderSee.Text = "See";
+            this.btnOldOrderSee.UseVisualStyleBackColor = true;
+            this.btnOldOrderSee.Click += new System.EventHandler(this.btnOldOrderSee_Click);
             // 
             // lblOldOrders
             // 
@@ -407,10 +436,11 @@
             // 
             // cbOldOrders
             // 
+            this.cbOldOrders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbOldOrders.FormattingEnabled = true;
             this.cbOldOrders.Location = new System.Drawing.Point(509, 106);
             this.cbOldOrders.Name = "cbOldOrders";
-            this.cbOldOrders.Size = new System.Drawing.Size(238, 24);
+            this.cbOldOrders.Size = new System.Drawing.Size(316, 24);
             this.cbOldOrders.TabIndex = 4;
             // 
             // btnExitOrders
@@ -429,15 +459,22 @@
             this.btnExitOrders.UseVisualStyleBackColor = true;
             this.btnExitOrders.Click += new System.EventHandler(this.CloseWindow);
             // 
-            // listView1
+            // lblProdName
             // 
-            this.listView1.Location = new System.Drawing.Point(423, 16);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(495, 391);
-            this.listView1.TabIndex = 12;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lblProdName.AutoSize = true;
+            this.lblProdName.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProdName.Location = new System.Drawing.Point(392, 58);
+            this.lblProdName.Name = "lblProdName";
+            this.lblProdName.Size = new System.Drawing.Size(93, 23);
+            this.lblProdName.TabIndex = 14;
+            this.lblProdName.Text = "Product";
+            this.lblProdName.Visible = false;
             // 
-            // OrdersScreen
+            // orderBindingSource
+            // 
+            this.orderBindingSource.DataSource = typeof(Business_under_control.Order);
+            // 
+            // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -447,11 +484,14 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(950, 550);
             this.MinimumSize = new System.Drawing.Size(950, 550);
-            this.Name = "OrdersScreen";
+            this.Name = "OrdersForm";
             this.Text = "Orders";
             this.Load += new System.EventHandler(this.OrdersScreen_Load);
             this.tabsOrder.ResumeLayout(false);
             this.tabCompareProviders.ResumeLayout(false);
+            this.tabCompareProviders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupp2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupp1)).EndInit();
             this.gbByProduct.ResumeLayout(false);
             this.gbByProduct.PerformLayout();
             this.gbCompProviders.ResumeLayout(false);
@@ -459,7 +499,9 @@
             this.tabEstimates.ResumeLayout(false);
             this.tabListOrders.ResumeLayout(false);
             this.tabListOrders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
             this.panelNewOrder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,7 +519,7 @@
         private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.Label lblNewOrders;
         private System.Windows.Forms.ComboBox cbNewOrders;
-        private System.Windows.Forms.Button btnOldOrderDatasheet;
+        private System.Windows.Forms.Button btnOldOrderSee;
         private System.Windows.Forms.Button btnSendToTextFile;
         private System.Windows.Forms.Label lblOldOrders;
         private System.Windows.Forms.ComboBox cbOldOrders;
@@ -486,7 +528,6 @@
         private System.Windows.Forms.Panel panelNewOrder;
         private System.Windows.Forms.Button btnProductRemove;
         private System.Windows.Forms.ListBox lstNewOrder;
-        private System.Windows.Forms.TextBox tbQuantity;
         private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.Button btnCompare;
         private System.Windows.Forms.Label label4;
@@ -499,6 +540,10 @@
         private System.Windows.Forms.ComboBox cbProducts;
         private System.Windows.Forms.Button btnCompareProducts;
         private System.Windows.Forms.GroupBox gbCompProviders;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.BindingSource orderBindingSource;
+        private System.Windows.Forms.NumericUpDown nudQuantity;
+        private System.Windows.Forms.DataGridView dgvSupp2;
+        private System.Windows.Forms.DataGridView dgvSupp1;
+        private System.Windows.Forms.Label lblProdName;
     }
 }

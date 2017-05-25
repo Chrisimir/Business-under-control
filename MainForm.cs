@@ -109,11 +109,13 @@ namespace Business_under_control
             // Sets the window on top if it is already open
             if (!statisticsScreen.Visible)
             {
+                Cursor = Cursors.WaitCursor;
                 statisticsScreen = new StatisticsScreen();
                 statisticsScreen.Show();
             }
             else
                 statisticsScreen.Focus();
+            Cursor = Cursors.Arrow;
         }
 
         // Display "Stock" window

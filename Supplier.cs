@@ -10,19 +10,19 @@ namespace Business_under_control
      */
     class Supplier
     {
-        private string CIF;
         private string name;
-        private TimeSpan deliveryTime;
-        private ContactInfo contactInfo;
-        private SortedList<Product, decimal> productPriceList;
+        private int shippingDays;
+        private string telephone;
 
-        public void addProduct(Product product, decimal price)
+        public Supplier(string name, int shippingDays, string telephone)
         {
-            productPriceList.Add(product, price);
+            this.name = name;
+            this.shippingDays = shippingDays;
+            this.telephone = telephone;
         }
-        public SortedList<Product, decimal> GetProductPriceList()
-        {
-            return productPriceList;
-        }
+
+        public string Name { get { return name; } set { name = value; } }
+        public int ShippingDays { get { return shippingDays; } set { shippingDays = value; } }
+        public string Telephone { get { return telephone; } set { telephone = value; } }
     }
 }

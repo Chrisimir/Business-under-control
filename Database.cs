@@ -39,21 +39,31 @@ namespace Business_under_control
 
         public void Sync()
         {
-            string syncFetchQ = @"select * from suppliers"; // TODO: Add correct query 
-            string syncPushQ = ""; // TODO: Add correct query 
+            string orderQry = @"select * from orders;";
+            OrderList.Add(Fetch(orderQry));
 
-            // TODO: Change
-            foreach (DataRow row in Fetch(syncFetchQ).Rows)
-            {
-                System.Diagnostics.Debug.WriteLine(row["name"].ToString());
-            };
-            //Push(syncPushQ);
+            string productQry = @"select * from product;";
+            ProductList.Add(Fetch(productQry));
 
-            // Manages new alerts from data
-            new AlertManager();
+            string supplierQry = @"select * from suppliers;";
+            SupplierList.Add(Fetch(supplierQry));
+
+            // OLD
+            //string syncFetchQ = @"select * from suppliers"; // TODO: Add correct query 
+            //string syncPushQ = ""; // TODO: Add correct query 
+
+            //// TODO: Change
+            //foreach (DataRow row in Fetch(syncFetchQ).Rows)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(row["name"].ToString());
+            //};
+            ////Push(syncPushQ);
+
+            //// Manages new alerts from data
+            //new AlertManager();
         }
 
-        DataTable Fetch(string queryString)
+        public DataTable Fetch(string queryString)
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = queryString;
@@ -63,8 +73,11 @@ namespace Business_under_control
                 MySqlDataReader sqlReader;
                 connection.Open();
                 sqlReader = command.ExecuteReader();
+
                 DataTable fetchedTable = new DataTable();
                 fetchedTable.Load(sqlReader);
+
+                connection.Close();
 
                 return fetchedTable;
             }

@@ -227,7 +227,7 @@
             // 
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMail.Location = new System.Drawing.Point(780, 217);
+            this.lblMail.Location = new System.Drawing.Point(761, 218);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(134, 16);
             this.lblMail.TabIndex = 11;

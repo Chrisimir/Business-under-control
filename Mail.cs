@@ -1,6 +1,7 @@
 ﻿// Chris Lund Schober
 
 using System;
+using System.Net.Mail;
 
 namespace Business_under_control
 {
@@ -10,21 +11,38 @@ namespace Business_under_control
     class Mail : Connection
     {
         private string mail;
-        Mail(string direction, string mail, short port, DateTime date) :
+        public Mail(string direction, string mail, short port, DateTime date) :
             base(direction, port, date)
         {
             this.mail = mail;
         }
 
-        protected override void Connect()
+        public void Send(string mailTo, string subject, string body, ref bool noError)
         {
-            // TODO: Addapt connection type
-            base.Connect();
-        }
+            // Loads password from a txt so it isn't visible in the code
+            string password = base.GetPassword("mailpass");
 
-        void Send()
-        {
-            // TODO: Send message
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(direction);
+
+                mail.From = new MailAddress(this.mail);
+                mail.To.Add(mailTo);
+                mail.Subject = subject;
+                mail.Body = body;
+
+                SmtpServer.Port = port;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(this.mail, password);
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                noError = true;
+                throw ex;
+            }
         }
         void Read()
         {

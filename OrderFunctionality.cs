@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.IO;
+using System.Data;
 
 namespace Business_under_control
 {
@@ -12,25 +13,64 @@ namespace Business_under_control
      */
     class OrderFunctionality
     {
-        // TODO: Complete functions
-        public void CompareSuppliers(
-            string supplier1, string supplier2, OrdersForm orderScreen)
+        public DataTable GetSupplierTable(string supplier)
         {
-            // Get information of those suppliers
+            string subQryQuantityProds 
+                = @"(select count(*) from supplierProducts" +
+                " where supplier = '" + supplier + "')";
+            string subQryQuantityOrders =
+                @"(select count(*) from orders where supplier = '" +
+                supplier + "')";
+            string suppDataQry =
+                @"select name, telephone, shippingDays, " +
+                subQryQuantityProds + " 'Amount of products', " +
+                subQryQuantityOrders + " 'Times ordered' from suppliers " +
+                "where name = '" + supplier + "';" ;
 
-            orderScreen.ShowSupplierComparison();
+            Database database = new Database();
+            DataTable suppTable = database.Fetch(suppDataQry);
+
+            return suppTable;
         }
-        List<object> EstimateFutureOrders()
+
+        // Gets data for order
+        public List<string> GetProductsOfOrder(int id)
         {
-            return new List<object>();
+            Database database = new Database();
+            List<string> productLines = new List<string>();
+
+            // Stock query
+            string prodQuantQry =
+                @"select product, quantity from stock where orderNum = " + id + ";";
+            DataTable prodQuantTable = database.Fetch(prodQuantQry);
+
+            foreach (DataRow row in prodQuantTable.Rows)
+            {
+                // SupplierProducts query
+                string priceProdQry =
+                @"select buyPrice from supplierProducts where product = '" +
+                row["product"] + "' and supplier = (select supplier from orders " +
+                "where id = " + id + ");";
+
+                string price = database.Fetch(priceProdQry).Rows[0]["buyPrice"].ToString();
+
+                productLines.Add(row["product"].ToString() + " - " + price + " x" +
+                    row["quantity"].ToString());
+            }
+
+            return productLines;
         }
-        List<object> SeeOrders()
+
+        // Gets supplier product seller price
+        public DataTable GetSupplierSellPrice(string product)
         {
-            return new List<object>();
-        }
-        string OrderToString()
-        {
-            return "";
+            string selectBuyPricesQry = @"select supplier 'Supplier', buyPrice 'Price' from supplierProducts where
+            product = '" + product + "' order by buyPrice;";
+
+            Database database = new Database();
+            DataTable priceTable = database.Fetch(selectBuyPricesQry);
+
+            return priceTable;
         }
 
         // Creates spreadsheet
@@ -94,7 +134,5 @@ namespace Business_under_control
 
             Utilities.SendLinesToTextFile(path + "\\Order" + DateTime.Now.ToString("dd-MM-yyyy") + ".txt", lines);
         }
-
-        //public static AggregateOrder()
     }
 }
